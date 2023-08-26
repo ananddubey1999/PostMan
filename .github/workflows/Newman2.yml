@@ -1,4 +1,3 @@
----
 name: Newman Cli
 on:
   push:
@@ -16,16 +15,20 @@ jobs:
       - name: create dir
         run: |
           mkdir sampleArtifact
+          
       - name: Install Node
       - uses: actions/checkout@v3
         with:
           node-version: 17.x
+          
       - name: Install newman
         run: |
           npm install -g newman
+          
       - name: run collection
         run: |
           newman run Booking_Api.postman_collection.json
+          
       - name: Publish Report
       - uses: actions/upload-artifact@v3
         with:
