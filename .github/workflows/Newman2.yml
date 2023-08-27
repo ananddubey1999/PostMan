@@ -1,36 +1,25 @@
-name: Newman Cli
+name: Run Postman Collection
+
 on:
   push:
     branches:
-      - main
-  pull_request:
-    branches:
-      - main
-  workflow_dispatch: null
+      - main  # Adjust to your main branch name
+
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  run_postman_collection:
+    runs-on: ubuntu-latest  # Use the desired runner environment
+    
     steps:
-      - uses: actions/checkout@v3
-      - name: create dir
-        run: |
-          mkdir sampleArtifact
-          
-      - name: Install Node
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
         with:
-          node-version: 17.x
-          
-      - name: Install newman
-        run: |
-          npm install -g newman
-          
-      - name: run collection
-        run: |
-          newman run Booking_Api.postman_collection.json
-          
-      - name: Publish Report
-      - uses: actions/upload-artifact@v3
-        with:
-          Name: Sample Report
-          Path: SampleArtifact
+          node-version: 14  # Use the desired Node.js version
+        
+      - name: Install dependencies
+        run: npm install -g newman@5  # Install Newman globally
+      
+      - name: Run Postman Collection
+        run: newman run path/to/Booking_Api.postman_collection.json
