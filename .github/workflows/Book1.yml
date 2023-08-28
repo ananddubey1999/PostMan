@@ -3,11 +3,11 @@ name: Run Postman Collection
 on:
   push:
     branches:
-      - main
+      - main  # Adjust to your main branch name
 
 jobs:
   run_postman_collection:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # Use the desired runner environment
     
     steps:
       - name: Checkout code
@@ -19,20 +19,30 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: 14
+          node-version: 14  # Use the desired Node.js version
         
       - name: Install dependencies
         run: |
-         npm install -g newman
+         npm install -g newman  # Install Newman globally
          npm install -g newman-reporter-slackreporter
          npm install -g newman-reporter-htmlextra
         
-      - name: Run Postman Collection and Generate Report
+      
+      - name: Run Postman Collection
         run: newman run Booking_Api.postman_collection.json -r cli,htmlextra-export TestArtifacts/htmlreport.html
 
-      - name: Upload the report artifacts
+      - name: Change dir
+        run: |
+          cd TestArtifacts
+      - name: check file Present or Not
+        run: dir
+
+     # Upload the reports to testArtifacts
+      - name: Output the result
         uses: actions/upload-artifact@v2
         with:
           name: Reports
           path: TestArtifacts
-
+          if-no-files-found: error
+     
+       
