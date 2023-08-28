@@ -29,7 +29,9 @@ jobs:
         
       
       - name: Run Postman Collection
-        run: newman run Booking_Api.postman_collection.json -r cli,htmlextra-export TestArtifacts/htmlreport.html
+        run: |
+          dir
+          newman run Booking_Api.postman_collection.json -r cli,htmlextra-export TestArtifacts/htmlreport.html
 
       - name: Change dir
         run: |
