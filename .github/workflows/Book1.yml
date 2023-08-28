@@ -35,8 +35,8 @@ jobs:
 
       - name: Commit and Push Changes
         run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
+          git config --global user.name "Anand Dubey"
+          git config --global user.email "dubeyanand7379@gmail.com"
           git add reports/*.html
           git commit -m "Add Newman HTML report"
           git push
