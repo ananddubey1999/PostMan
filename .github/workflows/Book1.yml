@@ -34,8 +34,7 @@ jobs:
       - name: Change dir
         run: |
           cd TestArtifacts
-      - name: check file Present or Not
-        run: dir
+          dir
 
      # Upload the reports to TestArtifacts
       - name: Output the result
