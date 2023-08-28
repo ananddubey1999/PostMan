@@ -37,7 +37,7 @@ jobs:
       - name: check file Present or Not
         run: dir
 
-     # Upload the reports to testArtifacts
+     # Upload the reports to TestArtifacts
       - name: Output the result
         uses: actions/upload-artifact@v2
         with:
