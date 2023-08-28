@@ -58,7 +58,7 @@ jobs:
           
       - name: Move HTML Report
         run: mv newman/htmlreport.html 
-        working-directory: PostMan  # Specify the directory where the report should be moved
+        # working-directory: PostMan  # Specify the directory where the report should be moved
 
       - name: Commit and Push Changes
         run: |
@@ -67,4 +67,4 @@ jobs:
           git add reports/*.html
           git commit -m "Add Newman HTML report"
           git push
-        # working-directory: PostMan
+        working-directory: PostMan
