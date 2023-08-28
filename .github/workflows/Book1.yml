@@ -57,14 +57,18 @@ jobs:
           # if-no-files-found: error
           
       - name: Move HTML Report
-        run: mv newman/htmlreport.html 
-        working-directory: PostMan  # Specify the directory where the report should be moved
+        run: mv PostMan/newman/htmlreport.html PostMan/reports/
+        working-directory: ${{ github.workspace }}
 
       - name: Commit and Push Changes
         run: |
           git config --global user.name "ananddubey1999"
           git config --global user.email "dubeyanand7379@gmail.com"
-          git add reports/*.html
+          git add PostMan/reports/*.html
           git commit -m "Add Newman HTML report"
           git push
-        working-directory: PostMan
+        working-directory: ${{ github.workspace }}
+
+
+
+
