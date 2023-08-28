@@ -44,7 +44,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Reports
-          path: TestArtifacts
+          path: htmlreport.html
           # if-no-files-found: error
      
        
