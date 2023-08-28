@@ -12,9 +12,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Create dir
-        run: |
-          mkdir TestArtifacts
+      # - name: Create dir
+      #   run: |
+      #     mkdir TestArtifacts
       
       - name: Set up Node.js
         uses: actions/setup-node@v2
@@ -34,12 +34,12 @@ jobs:
           newman run Booking_Api.postman_collection.json -r htmlextra cli,json,html --reporter-htmlextra-export htmlreport.html
           dir
 
-      - name: Change dir
-        run: |
-          cd TestArtifacts
-          dir
+      # - name: Change dir
+      #   run: |
+      #     cd TestArtifacts
+      #     dir
 
-     # Upload the reports to TestArtifacts
+     # Upload the reports to htmlreport.html which is in the root file
       - name: Output the result
         uses: actions/upload-artifact@v2
         with:
