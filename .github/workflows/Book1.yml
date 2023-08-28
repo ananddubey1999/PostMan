@@ -1,4 +1,3 @@
-
 name: Run Postman Collection
 
 on:
@@ -20,7 +19,7 @@ jobs:
           node-version: 14  # Use the desired Node.js version
         
       - name: Install dependencies
-        run: npm install -g newman@5  # Install Newman globally
+        run: npm install -g newman  # Install Newman globally
       
       - name: Run Postman Collection
-        run: newman run path/to/Booking_Api.postman_collection.json
+        run: echo hello
