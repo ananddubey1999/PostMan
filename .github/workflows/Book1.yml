@@ -30,7 +30,9 @@ jobs:
       
       - name: Run Postman Collection
         run: newman run Booking_Api.postman_collection.json -r cli,htmlextra-export TestArtifacts/htmlreport.html
-        
+
+      - name: check file Present or Not
+        run: dir
 
      # Upload the reports to testArtifacts
       - name: Output the result
