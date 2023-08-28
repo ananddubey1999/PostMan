@@ -56,7 +56,7 @@ jobs:
           path: htmlreport.html
           # if-no-files-found: error
       - name: Move HTML Report
-        run: mv newman/*.html reports/
+        run: mv newman/htmlreport.html 
         working-directory: PostMan  # Specify the directory where the report should be moved
 
       - name: Commit and Push Changes
