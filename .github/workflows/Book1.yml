@@ -12,6 +12,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: Create dir
+        run: |
+          mkdir TestArtifact
       
       - name: Set up Node.js
         uses: actions/setup-node@v2
@@ -19,25 +22,21 @@ jobs:
           node-version: 14  # Use the desired Node.js version
         
       - name: Install dependencies
-        run: npm install -g newman  # Install Newman globally
+        run: |
+         npm install -g newman  # Install Newman globally
+         npm install -g newman-reporter-slackreporter
+         npm install -g newman-reporter-htmlextra
+        
       
       - name: Run Postman Collection
-        run: newman run Booking_Api.postman_collection.json
+        run: newman run Booking_Api.postman_collection.json -r cli,htmlextra-export testArtifacts/htmlreport.html
+        
 
-      - name: Install Reporter htmlextra
-        run:  npm install -g newman-reporter-htmlextra
-
-      - name: Run Postman Collection with Reporter htmlextra
-        run: newman run Booking_Api.postman_collection.json -r htmlextra
-      - name: Move HTML Report
-        run: mv newman/*.html reports/
-        working-directory: PostMan  # Specify the directory where the report should be moved
-
-      - name: Commit and Push Changes
-        run: |
-          git config --global user.name "Anand Dubey"
-          git config --global user.email "dubeyanand7379@gmail.com"
-          git add reports/*.html
-          git commit -m "Add Newman HTML report"
-          git push
-        working-directory: PostMan
+     # Upload the reports to testArtifacts
+      - name: Output the result
+        uses: actions/upload-artifact@v2
+        with:
+          name: Reports
+          path: testArtifacts
+     
+       
