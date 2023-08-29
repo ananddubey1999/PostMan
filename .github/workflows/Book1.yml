@@ -65,6 +65,7 @@ jobs:
           git add htmlreport.html
           git commit -m "Add Newman HTML report"
           git push
+          
     
 
 
